@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.User">
+    <id column="u_id" jdbcType="VARCHAR" property="uId" />
+    <result column="u_account" jdbcType="VARCHAR" property="uAccount" />
+    <result column="u_pwd" jdbcType="VARCHAR" property="uPwd" />
+    <result column="u_reg_date" jdbcType="TIMESTAMP" property="uRegDate" />
+    <result column="u_sex" jdbcType="VARCHAR" property="uSex" />
+    <result column="u_nick_name" jdbcType="VARCHAR" property="uNickName" />
+    <result column="u_true_name" jdbcType="VARCHAR" property="uTrueName" />
+    <result column="u_level" jdbcType="TINYINT" property="uLevel" />
+    <result column="u_score" jdbcType="INTEGER" property="uScore" />
+    <result column="u_addr_id" jdbcType="VARCHAR" property="uAddrId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    u_id, u_account, u_pwd, u_reg_date, u_sex, u_nick_name, u_true_name, u_level, u_score, 
+    u_addr_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.User">
+    insert into user (u_id, u_account, u_pwd, 
+      u_reg_date, u_sex, u_nick_name, 
+      u_true_name, u_level, u_score, 
+      u_addr_id)
+    values (#{uId,jdbcType=VARCHAR}, #{uAccount,jdbcType=VARCHAR}, #{uPwd,jdbcType=VARCHAR}, 
+      #{uRegDate,jdbcType=TIMESTAMP}, #{uSex,jdbcType=VARCHAR}, #{uNickName,jdbcType=VARCHAR}, 
+      #{uTrueName,jdbcType=VARCHAR}, #{uLevel,jdbcType=TINYINT}, #{uScore,jdbcType=INTEGER}, 
+      #{uAddrId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uAccount != null">
+        u_account,
+      </if>
+      <if test="uPwd != null">
+        u_pwd,
+      </if>
+      <if test="uRegDate != null">
+        u_reg_date,
+      </if>
+      <if test="uSex != null">
+        u_sex,
+      </if>
+      <if test="uNickName != null">
+        u_nick_name,
+      </if>
+      <if test="uTrueName != null">
+        u_true_name,
+      </if>
+      <if test="uLevel != null">
+        u_level,
+      </if>
+      <if test="uScore != null">
+        u_score,
+      </if>
+      <if test="uAddrId != null">
+        u_addr_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+      <if test="uAccount != null">
+        #{uAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="uPwd != null">
+        #{uPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="uRegDate != null">
+        #{uRegDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uNickName != null">
+        #{uNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="uTrueName != null">
+        #{uTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="uLevel != null">
+        #{uLevel,jdbcType=TINYINT},
+      </if>
+      <if test="uScore != null">
+        #{uScore,jdbcType=INTEGER},
+      </if>
+      <if test="uAddrId != null">
+        #{uAddrId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.User">
+    update user
+    <set>
+      <if test="uAccount != null">
+        u_account = #{uAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="uPwd != null">
+        u_pwd = #{uPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="uRegDate != null">
+        u_reg_date = #{uRegDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uSex != null">
+        u_sex = #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uNickName != null">
+        u_nick_name = #{uNickName,jdbcType=VARCHAR},
+      </if>
+      <if test="uTrueName != null">
+        u_true_name = #{uTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="uLevel != null">
+        u_level = #{uLevel,jdbcType=TINYINT},
+      </if>
+      <if test="uScore != null">
+        u_score = #{uScore,jdbcType=INTEGER},
+      </if>
+      <if test="uAddrId != null">
+        u_addr_id = #{uAddrId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.User">
+    update user
+    set u_account = #{uAccount,jdbcType=VARCHAR},
+      u_pwd = #{uPwd,jdbcType=VARCHAR},
+      u_reg_date = #{uRegDate,jdbcType=TIMESTAMP},
+      u_sex = #{uSex,jdbcType=VARCHAR},
+      u_nick_name = #{uNickName,jdbcType=VARCHAR},
+      u_true_name = #{uTrueName,jdbcType=VARCHAR},
+      u_level = #{uLevel,jdbcType=TINYINT},
+      u_score = #{uScore,jdbcType=INTEGER},
+      u_addr_id = #{uAddrId,jdbcType=VARCHAR}
+    where u_id = #{uId,jdbcType=VARCHAR}
+  </update>
+</mapper>
