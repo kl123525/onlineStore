@@ -1,30 +1,33 @@
 package com.yxh.onlineStore.po;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable{
-    private static final long serialVersionUID = 8465535886492239611L;
-
+public class User {
     private String uId;
 
-    private String uAccount;
+    private String account;
 
-    private String uPwd;
+    private String password;
 
-    private Date uRegDate;
+    private Date regDate;
 
-    private String uSex;
+    private String sex;
 
-    private String uNickName;
+    private String nickName;
 
-    private String uTrueName;
+    private String trueName;
 
-    private Byte uLevel;
+    private Byte level;
 
-    private Integer uScore;
+    private Integer score;
 
-    private String uAddrId;
+    private String addrId;
+
+    private Integer exp;
+
+    private Byte addrNum;
+
+    private String img;
 
     public String getuId() {
         return uId;
@@ -34,75 +37,99 @@ public class User implements Serializable{
         this.uId = uId == null ? null : uId.trim();
     }
 
-    public String getuAccount() {
-        return uAccount;
+    public String getAccount() {
+        return account;
     }
 
-    public void setuAccount(String uAccount) {
-        this.uAccount = uAccount == null ? null : uAccount.trim();
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 
-    public String getuPwd() {
-        return uPwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setuPwd(String uPwd) {
-        this.uPwd = uPwd == null ? null : uPwd.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public Date getuRegDate() {
-        return uRegDate;
+    public Date getRegDate() {
+        return regDate;
     }
 
-    public void setuRegDate(Date uRegDate) {
-        this.uRegDate = uRegDate;
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
     }
 
-    public String getuSex() {
-        return uSex;
+    public String getSex() {
+        return sex;
     }
 
-    public void setuSex(String uSex) {
-        this.uSex = uSex == null ? null : uSex.trim();
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getuNickName() {
-        return uNickName;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setuNickName(String uNickName) {
-        this.uNickName = uNickName == null ? null : uNickName.trim();
+    public void setNickName(String nickName) {
+        this.nickName = nickName == null ? null : nickName.trim();
     }
 
-    public String getuTrueName() {
-        return uTrueName;
+    public String getTrueName() {
+        return trueName;
     }
 
-    public void setuTrueName(String uTrueName) {
-        this.uTrueName = uTrueName == null ? null : uTrueName.trim();
+    public void setTrueName(String trueName) {
+        this.trueName = trueName == null ? null : trueName.trim();
     }
 
-    public Byte getuLevel() {
-        return uLevel;
+    public Byte getLevel() {
+        return level;
     }
 
-    public void setuLevel(Byte uLevel) {
-        this.uLevel = uLevel;
+    public void setLevel(Byte level) {
+        this.level = level;
     }
 
-    public Integer getuScore() {
-        return uScore;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setuScore(Integer uScore) {
-        this.uScore = uScore;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 
-    public String getuAddrId() {
-        return uAddrId;
+    public String getAddrId() {
+        return addrId;
     }
 
-    public void setuAddrId(String uAddrId) {
-        this.uAddrId = uAddrId == null ? null : uAddrId.trim();
+    public void setAddrId(String addrId) {
+        this.addrId = addrId == null ? null : addrId.trim();
+    }
+
+    public Integer getExp() {
+        return exp;
+    }
+
+    public void setExp(Integer exp) {
+        this.exp = exp;
+    }
+
+    public Byte getAddrNum() {
+        return addrNum;
+    }
+
+    public void setAddrNum(Byte addrNum) {
+        this.addrNum = addrNum;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
     }
 }

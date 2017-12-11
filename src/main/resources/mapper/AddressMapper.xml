@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.Address">
+    <id column="addr_id" jdbcType="VARCHAR" property="addrId" />
+    <result column="post_code" jdbcType="VARCHAR" property="postCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="phone_no" jdbcType="VARCHAR" property="phoneNo" />
+    <result column="area1" jdbcType="VARCHAR" property="area1" />
+    <result column="area2" jdbcType="VARCHAR" property="area2" />
+    <result column="area3" jdbcType="VARCHAR" property="area3" />
+    <result column="area4" jdbcType="VARCHAR" property="area4" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="is_default" jdbcType="TINYINT" property="isDefault" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="u_id" jdbcType="VARCHAR" property="uId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    addr_id, post_code, name, phone_no, area1, area2, area3, area4, address, is_default, 
+    create_date, u_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from address
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.Address">
+    insert into address (addr_id, post_code, name, 
+      phone_no, area1, area2, 
+      area3, area4, address, 
+      is_default, create_date, u_id
+      )
+    values (#{addrId,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{phoneNo,jdbcType=VARCHAR}, #{area1,jdbcType=VARCHAR}, #{area2,jdbcType=VARCHAR}, 
+      #{area3,jdbcType=VARCHAR}, #{area4,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{isDefault,jdbcType=TINYINT}, #{createDate,jdbcType=TIMESTAMP}, #{uId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.Address">
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="addrId != null">
+        addr_id,
+      </if>
+      <if test="postCode != null">
+        post_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="phoneNo != null">
+        phone_no,
+      </if>
+      <if test="area1 != null">
+        area1,
+      </if>
+      <if test="area2 != null">
+        area2,
+      </if>
+      <if test="area3 != null">
+        area3,
+      </if>
+      <if test="area4 != null">
+        area4,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="isDefault != null">
+        is_default,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="uId != null">
+        u_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="addrId != null">
+        #{addrId,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null">
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null">
+        #{area1,jdbcType=VARCHAR},
+      </if>
+      <if test="area2 != null">
+        #{area2,jdbcType=VARCHAR},
+      </if>
+      <if test="area3 != null">
+        #{area3,jdbcType=VARCHAR},
+      </if>
+      <if test="area4 != null">
+        #{area4,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uId != null">
+        #{uId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.Address">
+    update address
+    <set>
+      <if test="postCode != null">
+        post_code = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNo != null">
+        phone_no = #{phoneNo,jdbcType=VARCHAR},
+      </if>
+      <if test="area1 != null">
+        area1 = #{area1,jdbcType=VARCHAR},
+      </if>
+      <if test="area2 != null">
+        area2 = #{area2,jdbcType=VARCHAR},
+      </if>
+      <if test="area3 != null">
+        area3 = #{area3,jdbcType=VARCHAR},
+      </if>
+      <if test="area4 != null">
+        area4 = #{area4,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        is_default = #{isDefault,jdbcType=TINYINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.Address">
+    update address
+    set post_code = #{postCode,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      phone_no = #{phoneNo,jdbcType=VARCHAR},
+      area1 = #{area1,jdbcType=VARCHAR},
+      area2 = #{area2,jdbcType=VARCHAR},
+      area3 = #{area3,jdbcType=VARCHAR},
+      area4 = #{area4,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=TINYINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      u_id = #{uId,jdbcType=VARCHAR}
+    where addr_id = #{addrId,jdbcType=VARCHAR}
+  </update>
+</mapper>

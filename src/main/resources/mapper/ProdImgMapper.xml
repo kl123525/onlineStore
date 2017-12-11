@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.ProdImgMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.ProdImg">
+    <id column="prod_img_id" jdbcType="VARCHAR" property="prodImgId" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="index" jdbcType="TINYINT" property="index" />
+    <result column="prod_id" jdbcType="VARCHAR" property="prodId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    prod_img_id, img, type, index, prod_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prod_img
+    where prod_img_id = #{prodImgId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from prod_img
+    where prod_img_id = #{prodImgId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.ProdImg">
+    insert into prod_img (prod_img_id, img, type, 
+      index, prod_id)
+    values (#{prodImgId,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, 
+      #{index,jdbcType=TINYINT}, #{prodId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.ProdImg">
+    insert into prod_img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodImgId != null">
+        prod_img_id,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="index != null">
+        index,
+      </if>
+      <if test="prodId != null">
+        prod_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodImgId != null">
+        #{prodImgId,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="index != null">
+        #{index,jdbcType=TINYINT},
+      </if>
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.ProdImg">
+    update prod_img
+    <set>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="index != null">
+        index = #{index,jdbcType=TINYINT},
+      </if>
+      <if test="prodId != null">
+        prod_id = #{prodId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where prod_img_id = #{prodImgId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.ProdImg">
+    update prod_img
+    set img = #{img,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      index = #{index,jdbcType=TINYINT},
+      prod_id = #{prodId,jdbcType=VARCHAR}
+    where prod_img_id = #{prodImgId,jdbcType=VARCHAR}
+  </update>
+</mapper>

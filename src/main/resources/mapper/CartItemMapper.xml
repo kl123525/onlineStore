@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.CartItemMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.CartItem">
+    <id column="cart_item_id" jdbcType="VARCHAR" property="cartItemId" />
+    <result column="cart_id" jdbcType="VARCHAR" property="cartId" />
+    <result column="prod_id" jdbcType="VARCHAR" property="prodId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="TINYINT" property="quantity" />
+    <result column="buy" jdbcType="TINYINT" property="buy" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="prod_img_id" jdbcType="VARCHAR" property="prodImgId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cart_item_id, cart_id, prod_id, price, quantity, buy, name, store_id, prod_img_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cart_item
+    where cart_item_id = #{cartItemId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cart_item
+    where cart_item_id = #{cartItemId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.CartItem">
+    insert into cart_item (cart_item_id, cart_id, prod_id, 
+      price, quantity, buy, 
+      name, store_id, prod_img_id
+      )
+    values (#{cartItemId,jdbcType=VARCHAR}, #{cartId,jdbcType=VARCHAR}, #{prodId,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{quantity,jdbcType=TINYINT}, #{buy,jdbcType=TINYINT}, 
+      #{name,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, #{prodImgId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.CartItem">
+    insert into cart_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cartItemId != null">
+        cart_item_id,
+      </if>
+      <if test="cartId != null">
+        cart_id,
+      </if>
+      <if test="prodId != null">
+        prod_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+      <if test="buy != null">
+        buy,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="prodImgId != null">
+        prod_img_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cartItemId != null">
+        #{cartItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="cartId != null">
+        #{cartId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=TINYINT},
+      </if>
+      <if test="buy != null">
+        #{buy,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodImgId != null">
+        #{prodImgId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.CartItem">
+    update cart_item
+    <set>
+      <if test="cartId != null">
+        cart_id = #{cartId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodId != null">
+        prod_id = #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=TINYINT},
+      </if>
+      <if test="buy != null">
+        buy = #{buy,jdbcType=TINYINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodImgId != null">
+        prod_img_id = #{prodImgId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cart_item_id = #{cartItemId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.CartItem">
+    update cart_item
+    set cart_id = #{cartId,jdbcType=VARCHAR},
+      prod_id = #{prodId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      quantity = #{quantity,jdbcType=TINYINT},
+      buy = #{buy,jdbcType=TINYINT},
+      name = #{name,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      prod_img_id = #{prodImgId,jdbcType=VARCHAR}
+    where cart_item_id = #{cartItemId,jdbcType=VARCHAR}
+  </update>
+</mapper>

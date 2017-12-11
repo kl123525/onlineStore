@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.ClassifyMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.Classify">
+    <id column="classify_id" jdbcType="VARCHAR" property="classifyId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="fid" jdbcType="VARCHAR" property="fid" />
+    <result column="index" jdbcType="TINYINT" property="index" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    classify_id, name, fid, index, img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from classify
+    where classify_id = #{classifyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from classify
+    where classify_id = #{classifyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.Classify">
+    insert into classify (classify_id, name, fid, 
+      index, img)
+    values (#{classifyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{fid,jdbcType=VARCHAR}, 
+      #{index,jdbcType=TINYINT}, #{img,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.Classify">
+    insert into classify
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="classifyId != null">
+        classify_id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="index != null">
+        index,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="classifyId != null">
+        #{classifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="index != null">
+        #{index,jdbcType=TINYINT},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.Classify">
+    update classify
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=VARCHAR},
+      </if>
+      <if test="index != null">
+        index = #{index,jdbcType=TINYINT},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where classify_id = #{classifyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.Classify">
+    update classify
+    set name = #{name,jdbcType=VARCHAR},
+      fid = #{fid,jdbcType=VARCHAR},
+      index = #{index,jdbcType=TINYINT},
+      img = #{img,jdbcType=VARCHAR}
+    where classify_id = #{classifyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

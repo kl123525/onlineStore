@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.ProductMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.Product">
+    <id column="prod_id" jdbcType="VARCHAR" property="prodId" />
+    <result column="prod_name" jdbcType="VARCHAR" property="prodName" />
+    <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="classify_id" jdbcType="VARCHAR" property="classifyId" />
+    <result column="sku_num" jdbcType="TINYINT" property="skuNum" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    prod_id, prod_name, store_id, stock, price, classify_id, sku_num
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where prod_id = #{prodId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from product
+    where prod_id = #{prodId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.Product">
+    insert into product (prod_id, prod_name, store_id, 
+      stock, price, classify_id, 
+      sku_num)
+    values (#{prodId,jdbcType=VARCHAR}, #{prodName,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, 
+      #{stock,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{classifyId,jdbcType=VARCHAR}, 
+      #{skuNum,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.Product">
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodId != null">
+        prod_id,
+      </if>
+      <if test="prodName != null">
+        prod_name,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="classifyId != null">
+        classify_id,
+      </if>
+      <if test="skuNum != null">
+        sku_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null">
+        #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="classifyId != null">
+        #{classifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuNum != null">
+        #{skuNum,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.Product">
+    update product
+    <set>
+      <if test="prodName != null">
+        prod_name = #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="classifyId != null">
+        classify_id = #{classifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuNum != null">
+        sku_num = #{skuNum,jdbcType=TINYINT},
+      </if>
+    </set>
+    where prod_id = #{prodId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.Product">
+    update product
+    set prod_name = #{prodName,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=VARCHAR},
+      stock = #{stock,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      classify_id = #{classifyId,jdbcType=VARCHAR},
+      sku_num = #{skuNum,jdbcType=TINYINT}
+    where prod_id = #{prodId,jdbcType=VARCHAR}
+  </update>
+</mapper>

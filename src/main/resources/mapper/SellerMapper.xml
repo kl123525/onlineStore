@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.SellerMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.Seller">
+    <id column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+    <result column="true_name" jdbcType="VARCHAR" property="trueName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="exp" jdbcType="INTEGER" property="exp" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+    <result column="store_num" jdbcType="TINYINT" property="storeNum" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    seller_id, true_name, nick_name, account, reg_date, exp, level, store_num, img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from seller
+    where seller_id = #{sellerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from seller
+    where seller_id = #{sellerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.Seller">
+    insert into seller (seller_id, true_name, nick_name, 
+      account, reg_date, exp, 
+      level, store_num, img
+      )
+    values (#{sellerId,jdbcType=VARCHAR}, #{trueName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{account,jdbcType=VARCHAR}, #{regDate,jdbcType=TIMESTAMP}, #{exp,jdbcType=INTEGER}, 
+      #{level,jdbcType=TINYINT}, #{storeNum,jdbcType=TINYINT}, #{img,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.Seller">
+    insert into seller
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="trueName != null">
+        true_name,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="regDate != null">
+        reg_date,
+      </if>
+      <if test="exp != null">
+        exp,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="storeNum != null">
+        store_num,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="trueName != null">
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="regDate != null">
+        #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exp != null">
+        #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=TINYINT},
+      </if>
+      <if test="storeNum != null">
+        #{storeNum,jdbcType=TINYINT},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.Seller">
+    update seller
+    <set>
+      <if test="trueName != null">
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="regDate != null">
+        reg_date = #{regDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exp != null">
+        exp = #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=TINYINT},
+      </if>
+      <if test="storeNum != null">
+        store_num = #{storeNum,jdbcType=TINYINT},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where seller_id = #{sellerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.Seller">
+    update seller
+    set true_name = #{trueName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      exp = #{exp,jdbcType=INTEGER},
+      level = #{level,jdbcType=TINYINT},
+      store_num = #{storeNum,jdbcType=TINYINT},
+      img = #{img,jdbcType=VARCHAR}
+    where seller_id = #{sellerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

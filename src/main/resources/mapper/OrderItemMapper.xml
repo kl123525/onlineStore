@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yxh.onlineStore.dao.OrderItemMapper">
+  <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.OrderItem">
+    <id column="order_item_id" jdbcType="VARCHAR" property="orderItemId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="prod_id" jdbcType="VARCHAR" property="prodId" />
+    <result column="prod_name" jdbcType="VARCHAR" property="prodName" />
+    <result column="prod_img_id" jdbcType="VARCHAR" property="prodImgId" />
+    <result column="quantity" jdbcType="TINYINT" property="quantity" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_item_id, order_id, prod_id, prod_name, prod_img_id, quantity
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_item
+    where order_item_id = #{orderItemId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from order_item
+    where order_item_id = #{orderItemId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yxh.onlineStore.po.OrderItem">
+    insert into order_item (order_item_id, order_id, prod_id, 
+      prod_name, prod_img_id, quantity
+      )
+    values (#{orderItemId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{prodId,jdbcType=VARCHAR}, 
+      #{prodName,jdbcType=VARCHAR}, #{prodImgId,jdbcType=VARCHAR}, #{quantity,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.OrderItem">
+    insert into order_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderItemId != null">
+        order_item_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="prodId != null">
+        prod_id,
+      </if>
+      <if test="prodName != null">
+        prod_name,
+      </if>
+      <if test="prodImgId != null">
+        prod_img_id,
+      </if>
+      <if test="quantity != null">
+        quantity,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderItemId != null">
+        #{orderItemId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null">
+        #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="prodImgId != null">
+        #{prodImgId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.OrderItem">
+    update order_item
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodId != null">
+        prod_id = #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null">
+        prod_name = #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="prodImgId != null">
+        prod_img_id = #{prodImgId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null">
+        quantity = #{quantity,jdbcType=TINYINT},
+      </if>
+    </set>
+    where order_item_id = #{orderItemId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.OrderItem">
+    update order_item
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      prod_id = #{prodId,jdbcType=VARCHAR},
+      prod_name = #{prodName,jdbcType=VARCHAR},
+      prod_img_id = #{prodImgId,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=TINYINT}
+    where order_item_id = #{orderItemId,jdbcType=VARCHAR}
+  </update>
+</mapper>
