@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yxh.onlineStore.dao.ClassifyMapper">
+<mapper namespace="com.yxh.onlineStore.dao.ClassifyDao">
   <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.Classify">
-    <id column="classify_id" jdbcType="VARCHAR" property="classifyId" />
+    <id column="category_id" jdbcType="VARCHAR" property="categoryId" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="fid" jdbcType="VARCHAR" property="fid" />
     <result column="index" jdbcType="TINYINT" property="index" />
-    <result column="img" jdbcType="VARCHAR" property="img" />
   </resultMap>
   <sql id="Base_Column_List">
-    classify_id, name, fid, index, img
+    category_id, name, fid, index
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from classify
-    where classify_id = #{classifyId,jdbcType=VARCHAR}
+    from category
+    where category_id = #{categoryId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from classify
-    where classify_id = #{classifyId,jdbcType=VARCHAR}
+    delete from category
+    where category_id = #{categoryId,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.yxh.onlineStore.po.Classify">
-    insert into classify (classify_id, name, fid, 
-      index, img)
-    values (#{classifyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{fid,jdbcType=VARCHAR}, 
-      #{index,jdbcType=TINYINT}, #{img,jdbcType=VARCHAR})
+    insert into category (category_id, name, fid, 
+      index)
+    values (#{categoryId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{fid,jdbcType=VARCHAR}, 
+      #{index,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.Classify">
-    insert into classify
+    insert into category
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="classifyId != null">
-        classify_id,
+      <if test="categoryId != null">
+        category_id,
       </if>
       <if test="name != null">
         name,
@@ -42,13 +41,10 @@
       <if test="index != null">
         index,
       </if>
-      <if test="img != null">
-        img,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="classifyId != null">
-        #{classifyId,jdbcType=VARCHAR},
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -59,13 +55,10 @@
       <if test="index != null">
         #{index,jdbcType=TINYINT},
       </if>
-      <if test="img != null">
-        #{img,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yxh.onlineStore.po.Classify">
-    update classify
+    update category
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -76,18 +69,14 @@
       <if test="index != null">
         index = #{index,jdbcType=TINYINT},
       </if>
-      <if test="img != null">
-        img = #{img,jdbcType=VARCHAR},
-      </if>
     </set>
-    where classify_id = #{classifyId,jdbcType=VARCHAR}
+    where category_id = #{categoryId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yxh.onlineStore.po.Classify">
-    update classify
+    update category
     set name = #{name,jdbcType=VARCHAR},
       fid = #{fid,jdbcType=VARCHAR},
-      index = #{index,jdbcType=TINYINT},
-      img = #{img,jdbcType=VARCHAR}
-    where classify_id = #{classifyId,jdbcType=VARCHAR}
+      index = #{index,jdbcType=TINYINT}
+    where category_id = #{categoryId,jdbcType=VARCHAR}
   </update>
 </mapper>

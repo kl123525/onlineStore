@@ -1,7 +1,7 @@
 package com.yxh.onlineStore.po;
 
 public class Classify {
-    private String classifyId;
+    private String categoryId;
 
     private String name;
 
@@ -9,14 +9,12 @@ public class Classify {
 
     private Byte index;
 
-    private String img;
-
-    public String getClassifyId() {
-        return classifyId;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setClassifyId(String classifyId) {
-        this.classifyId = classifyId == null ? null : classifyId.trim();
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId == null ? null : categoryId.trim();
     }
 
     public String getName() {
@@ -41,13 +39,5 @@ public class Classify {
 
     public void setIndex(Byte index) {
         this.index = index;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img == null ? null : img.trim();
     }
 }

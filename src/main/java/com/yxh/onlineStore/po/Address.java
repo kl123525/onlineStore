@@ -3,7 +3,6 @@ package com.yxh.onlineStore.po;
 import java.util.Date;
 
 public class Address {
-
     private String addrId;
 
     private String postCode;
@@ -123,6 +122,4 @@ public class Address {
     public void setuId(String uId) {
         this.uId = uId == null ? null : uId.trim();
     }
-
-
 }

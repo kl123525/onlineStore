@@ -19,7 +19,7 @@ public class User {
 
     private Byte level;
 
-    private Integer score;
+    private Integer point;
 
     private String addrId;
 
@@ -93,12 +93,12 @@ public class User {
         this.level = level;
     }
 
-    public Integer getScore() {
-        return score;
+    public Integer getPoint() {
+        return point;
     }
 
-    public void setScore(Integer score) {
-        this.score = score;
+    public void setPoint(Integer point) {
+        this.point = point;
     }
 
     public String getAddrId() {

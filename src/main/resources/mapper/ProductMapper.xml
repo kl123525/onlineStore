@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yxh.onlineStore.dao.ProductMapper">
+<mapper namespace="com.yxh.onlineStore.dao.ProductDao">
   <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.Product">
     <id column="prod_id" jdbcType="VARCHAR" property="prodId" />
     <result column="prod_name" jdbcType="VARCHAR" property="prodName" />
     <result column="store_id" jdbcType="VARCHAR" property="storeId" />
     <result column="stock" jdbcType="INTEGER" property="stock" />
     <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="classify_id" jdbcType="VARCHAR" property="classifyId" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
     <result column="sku_num" jdbcType="TINYINT" property="skuNum" />
+    <result column="exp" jdbcType="TINYINT" property="exp" />
+    <result column="point" jdbcType="TINYINT" property="point" />
   </resultMap>
   <sql id="Base_Column_List">
-    prod_id, prod_name, store_id, stock, price, classify_id, sku_num
+    prod_id, prod_name, store_id, stock, price, category_id, sku_num, exp, point
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -25,11 +27,11 @@
   </delete>
   <insert id="insert" parameterType="com.yxh.onlineStore.po.Product">
     insert into product (prod_id, prod_name, store_id, 
-      stock, price, classify_id, 
-      sku_num)
+      stock, price, category_id, 
+      sku_num, exp, point)
     values (#{prodId,jdbcType=VARCHAR}, #{prodName,jdbcType=VARCHAR}, #{storeId,jdbcType=VARCHAR}, 
-      #{stock,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{classifyId,jdbcType=VARCHAR}, 
-      #{skuNum,jdbcType=TINYINT})
+      #{stock,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{categoryId,jdbcType=VARCHAR}, 
+      #{skuNum,jdbcType=TINYINT}, #{exp,jdbcType=TINYINT}, #{point,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.yxh.onlineStore.po.Product">
     insert into product
@@ -49,11 +51,17 @@
       <if test="price != null">
         price,
       </if>
-      <if test="classifyId != null">
-        classify_id,
+      <if test="categoryId != null">
+        category_id,
       </if>
       <if test="skuNum != null">
         sku_num,
+      </if>
+      <if test="exp != null">
+        exp,
+      </if>
+      <if test="point != null">
+        point,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -72,11 +80,17 @@
       <if test="price != null">
         #{price,jdbcType=DECIMAL},
       </if>
-      <if test="classifyId != null">
-        #{classifyId,jdbcType=VARCHAR},
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=VARCHAR},
       </if>
       <if test="skuNum != null">
         #{skuNum,jdbcType=TINYINT},
+      </if>
+      <if test="exp != null">
+        #{exp,jdbcType=TINYINT},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -95,11 +109,17 @@
       <if test="price != null">
         price = #{price,jdbcType=DECIMAL},
       </if>
-      <if test="classifyId != null">
-        classify_id = #{classifyId,jdbcType=VARCHAR},
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=VARCHAR},
       </if>
       <if test="skuNum != null">
         sku_num = #{skuNum,jdbcType=TINYINT},
+      </if>
+      <if test="exp != null">
+        exp = #{exp,jdbcType=TINYINT},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=TINYINT},
       </if>
     </set>
     where prod_id = #{prodId,jdbcType=VARCHAR}
@@ -110,8 +130,10 @@
       store_id = #{storeId,jdbcType=VARCHAR},
       stock = #{stock,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
-      classify_id = #{classifyId,jdbcType=VARCHAR},
-      sku_num = #{skuNum,jdbcType=TINYINT}
+      category_id = #{categoryId,jdbcType=VARCHAR},
+      sku_num = #{skuNum,jdbcType=TINYINT},
+      exp = #{exp,jdbcType=TINYINT},
+      point = #{point,jdbcType=TINYINT}
     where prod_id = #{prodId,jdbcType=VARCHAR}
   </update>
 </mapper>

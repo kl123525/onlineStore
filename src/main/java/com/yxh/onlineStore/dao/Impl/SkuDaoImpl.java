@@ -1,7 +1,7 @@
 package com.yxh.onlineStore.dao.Impl;
 
 import com.yxh.onlineStore.dao.SkuDao;
-import com.yxh.onlineStore.dao.support.AbstractBaseMongoTemplete;
+import com.yxh.onlineStore.dao.support.AbstractBaseMongoTemplate;
 import com.yxh.onlineStore.po.Sku;
 import com.yxh.onlineStore.utils.MongoUtils;
 import com.yxh.onlineStore.utils.MyException;
@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by 杨旭晖 on 2017/12/11.
  */
-public class SkuDaoImpl extends AbstractBaseMongoTemplete implements SkuDao {
+public class SkuDaoImpl extends AbstractBaseMongoTemplate implements SkuDao {
 
     private MongoUtils mongoUtils = new MongoUtils();
 

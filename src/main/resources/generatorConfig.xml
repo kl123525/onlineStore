@@ -11,8 +11,8 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="mongodb.jdbc.MongoDriver" connectionURL="jdbc:mongo://139.199.207.90/onlineStore"
-                        userId="onlineStore" password="123456*">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/onlineStore"
+                        userId="root" password="123456">
         </jdbcConnection>
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -46,7 +46,7 @@
         <table tableName="cart_item" domainObjectName="CartItem" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
 
-        <table tableName="classify" domainObjectName="Classify" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="category" domainObjectName="Classify" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
 
         <table tableName="manage" domainObjectName="Manage" enableCountByExample="false" enableUpdateByExample="false"

@@ -13,9 +13,13 @@ public class Product {
 
     private BigDecimal price;
 
-    private String classifyId;
+    private String categoryId;
 
     private Byte skuNum;
+
+    private Byte exp;
+
+    private Byte point;
 
     public String getProdId() {
         return prodId;
@@ -57,12 +61,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getClassifyId() {
-        return classifyId;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setClassifyId(String classifyId) {
-        this.classifyId = classifyId == null ? null : classifyId.trim();
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId == null ? null : categoryId.trim();
     }
 
     public Byte getSkuNum() {
@@ -71,5 +75,21 @@ public class Product {
 
     public void setSkuNum(Byte skuNum) {
         this.skuNum = skuNum;
+    }
+
+    public Byte getExp() {
+        return exp;
+    }
+
+    public void setExp(Byte exp) {
+        this.exp = exp;
+    }
+
+    public Byte getPoint() {
+        return point;
+    }
+
+    public void setPoint(Byte point) {
+        this.point = point;
     }
 }

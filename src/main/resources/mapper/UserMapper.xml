@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yxh.onlineStore.dao.UserMapper">
+<mapper namespace="com.yxh.onlineStore.dao.UserDao">
+  <cache type="com.yxh.onlineStore.utils.RedisCache"/>
   <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.User">
     <id column="u_id" jdbcType="VARCHAR" property="uId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
@@ -10,17 +11,17 @@
     <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="true_name" jdbcType="VARCHAR" property="trueName" />
     <result column="level" jdbcType="TINYINT" property="level" />
-    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="point" jdbcType="INTEGER" property="point" />
     <result column="addr_id" jdbcType="VARCHAR" property="addrId" />
     <result column="exp" jdbcType="INTEGER" property="exp" />
     <result column="addr_num" jdbcType="TINYINT" property="addrNum" />
     <result column="img" jdbcType="VARCHAR" property="img" />
   </resultMap>
   <sql id="Base_Column_List">
-    u_id, account, password, reg_date, sex, nick_name, true_name, level, score, addr_id, 
+    u_id, account, password, reg_date, sex, nick_name, true_name, level, point, addr_id, 
     exp, addr_num, img
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap" useCache="true">
     select 
     <include refid="Base_Column_List" />
     from user
@@ -33,12 +34,12 @@
   <insert id="insert" parameterType="com.yxh.onlineStore.po.User">
     insert into user (u_id, account, password, 
       reg_date, sex, nick_name, 
-      true_name, level, score, 
+      true_name, level, point, 
       addr_id, exp, addr_num, 
       img)
     values (#{uId,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{regDate,jdbcType=TIMESTAMP}, #{sex,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{trueName,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, #{score,jdbcType=INTEGER}, 
+      #{trueName,jdbcType=VARCHAR}, #{level,jdbcType=TINYINT}, #{point,jdbcType=INTEGER}, 
       #{addrId,jdbcType=VARCHAR}, #{exp,jdbcType=INTEGER}, #{addrNum,jdbcType=TINYINT}, 
       #{img,jdbcType=VARCHAR})
   </insert>
@@ -69,8 +70,8 @@
       <if test="level != null">
         level,
       </if>
-      <if test="score != null">
-        score,
+      <if test="point != null">
+        point,
       </if>
       <if test="addrId != null">
         addr_id,
@@ -110,8 +111,8 @@
       <if test="level != null">
         #{level,jdbcType=TINYINT},
       </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
+      <if test="point != null">
+        #{point,jdbcType=INTEGER},
       </if>
       <if test="addrId != null">
         #{addrId,jdbcType=VARCHAR},
@@ -151,8 +152,8 @@
       <if test="level != null">
         level = #{level,jdbcType=TINYINT},
       </if>
-      <if test="score != null">
-        score = #{score,jdbcType=INTEGER},
+      <if test="point != null">
+        point = #{point,jdbcType=INTEGER},
       </if>
       <if test="addrId != null">
         addr_id = #{addrId,jdbcType=VARCHAR},
@@ -178,7 +179,7 @@
       nick_name = #{nickName,jdbcType=VARCHAR},
       true_name = #{trueName,jdbcType=VARCHAR},
       level = #{level,jdbcType=TINYINT},
-      score = #{score,jdbcType=INTEGER},
+      point = #{point,jdbcType=INTEGER},
       addr_id = #{addrId,jdbcType=VARCHAR},
       exp = #{exp,jdbcType=INTEGER},
       addr_num = #{addrNum,jdbcType=TINYINT},

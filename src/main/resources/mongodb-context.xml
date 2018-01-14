@@ -15,7 +15,7 @@ http://www.springframework.org/schema/data/repository/spring-repository-1.5.xsd"
     <context:property-placeholder location="classpath:jdbc.properties" />
 
     <!-- 定义mongo对象，对应的是mongodb官方jar包中的Mongo，replica-set设置集群副本的ip地址和端口 -->
-    <mongo:mongo-client id="mongo" host="139.199.207.90" port="20717" credentials="MyBlog:123456@MyBlog" />
+    <mongo:mongo-client id="mongo" host="139.199.207.90" port="20717" credentials="OnlineStore:123456*@OnlineStore" />
 
     <mongo:db-factory dbname="database" mongo-ref="mongo" />
 

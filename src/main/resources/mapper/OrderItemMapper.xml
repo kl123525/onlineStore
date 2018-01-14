@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yxh.onlineStore.dao.OrderItemMapper">
+<mapper namespace="com.yxh.onlineStore.dao.OrderItemDao">
   <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.OrderItem">
     <id column="order_item_id" jdbcType="VARCHAR" property="orderItemId" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />

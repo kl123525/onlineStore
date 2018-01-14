@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yxh.onlineStore.dao.ProdImgMapper">
+<mapper namespace="com.yxh.onlineStore.dao.ProdImgDao">
   <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.ProdImg">
     <id column="prod_img_id" jdbcType="VARCHAR" property="prodImgId" />
     <result column="img" jdbcType="VARCHAR" property="img" />
