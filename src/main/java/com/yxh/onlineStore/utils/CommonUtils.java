@@ -1,6 +1,8 @@
 package com.yxh.onlineStore.utils;
 
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by 杨旭晖 on 2017/12/11.
@@ -45,5 +47,29 @@ public class CommonUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 获取当前线程id，5位左侧补零
+     * */
+    public String getThreadId(){
+        Long tId = Thread.currentThread().getId();
+        return String.format("%05d",tId);
+    }
+
+    /**
+     *获取当前时间戳，14位
+     * */
+    public String getTimestamp(){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return df.format(new Date());
+    }
+
+    /**
+     * 获取0-999随机数，不足三位左侧补零
+     * */
+    public String get3RandomNum(){
+        int randomNum = (int)(0 + Math.random()*999);
+        return String.format("$03d",randomNum);
     }
 }
