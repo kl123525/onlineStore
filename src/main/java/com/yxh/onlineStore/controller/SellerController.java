@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("seller")
-public class sellerController {
+public class SellerController {
 
     @RequestMapping("sellerPage")
     public String sellerPage() { return "seller/center"; }

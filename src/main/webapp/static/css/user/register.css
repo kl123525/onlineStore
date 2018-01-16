@@ -1,0 +1,147 @@
+.steps ol {
+    width: 720px;
+    margin:0 auto 0 auto;
+}
+.steps {
+    height: 46px;
+    border-bottom: 2px solid #e6e6e6;
+    position: relative;
+}
+.steps ol li.active {
+    color: #3e3e3e;
+    border-bottom: 2px solid #ff4700;
+}
+
+.steps ol li {
+    list-style: none;
+    display: inline;
+    float: left;
+    width: 230px;
+    padding-left: 30px;
+    height: 46px;
+    /* line-height: 46px; */
+    font-size: 20px;
+    font-weight: 700;
+    color: #999;
+    font-family: "\5FAE\8F6F\96C5\9ED1", "\534E\6587\7EC6\9ED1", "\9ED1\4F53", arial;
+}
+.steps ol li i {
+    display: inline-block;
+    zoom: 1;
+    margin-right: 5px;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    font-style: normal;
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #FFF;
+    background: url(../../img/site/ico-circle2.png) no-repeat 0 0;
+}
+.steps ol li.active i {
+    background-image: url(../../img/site/ico-circle1.png);
+}
+.reg-content {
+    padding: 50px 0 50px 0;
+}
+.reg-form {
+    width: 720px;
+    margin:0 auto 0 auto;
+}
+.form-group {
+    padding: 10px 0 10px 0;
+    margin-bottom: 15px;
+}
+.form-item {
+    padding: 20px 0 10px 220px;
+    zoom: 1;
+    width: 720px;
+    height: 69px;
+}
+.form-label {
+    display: inline;
+    float: left;
+    margin-left: -300px;
+    width: 240px;
+    height: 39px;
+    line-height: 39px;
+    text-align: right;
+    font-size: 16px;
+}
+.mobile-text {
+    position: relative;
+    height: 39px;
+}
+.mobile-text .mobile-input {
+    height: 39px;
+    margin-left: -50px;
+    width: 226px;
+}
+.btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.send-sms-btn {
+    position: absolute;
+    top: 4px;
+    right: 50%;
+    width: 86px;
+    margin-right: 80px;
+    font-size: 12px;
+}
+.send-sms-btn:hover {
+    background-color: #46b8da;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.form-item-short {
+    padding-top: 20px;
+}
+.protocol {
+    color: #38f;
+    cursor: pointer;
+}
+
+.mobile-text span {
+    color: red;
+    position: absolute;
+    margin-top: -23px;
+    margin-left: -220px;
+}

@@ -322,6 +322,33 @@
       <version>1.0.0</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-juli -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-juli</artifactId>
+      <version>9.0.0.M22</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-catalina -->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina</artifactId>
+      <version>9.0.0.M25</version>
+    </dependency>
+
+    <dependency>
+      <groupId>alibaba</groupId>
+      <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>alibaba</groupId>
+      <artifactId>aliyun-java-sdk-core</artifactId>
+      <version>3.3.1</version>
+    </dependency>
+
+
   </dependencies>
   <build>
     <finalName>onlineStore</finalName>

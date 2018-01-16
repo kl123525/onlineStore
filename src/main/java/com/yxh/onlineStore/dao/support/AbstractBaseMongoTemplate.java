@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 public class AbstractBaseMongoTemplate implements ApplicationContextAware {
     protected MongoTemplate mongoTemplate;
 
-    public void setMongoTemplate(MongoTemplate mongoTemplate) {
+    private void setMongoTemplate(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
 

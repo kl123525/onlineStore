@@ -3,6 +3,7 @@ package com.yxh.onlineStore.po;
 import java.util.Date;
 
 public class User {
+
     private String uId;
 
     private String account;
@@ -28,6 +29,9 @@ public class User {
     private Byte addrNum;
 
     private String img;
+
+    public String getPrefix() {
+        return "001"; }
 
     public String getuId() {
         return uId;

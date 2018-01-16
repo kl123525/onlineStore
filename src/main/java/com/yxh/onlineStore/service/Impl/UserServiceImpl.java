@@ -7,8 +7,7 @@ import com.yxh.onlineStore.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 /**
  * Created by 杨旭晖 on 2018/1/14.
@@ -18,15 +17,15 @@ public class UserServiceImpl implements UserService{
     private CommonUtils utils = new CommonUtils();
     @Autowired
     UserDao userDao;
+
     public void insertUser(User user) {
-        String prefix = "001";
+        String prefix = user.getPrefix();
         String timestamp = utils.getTimestamp();
         String threadId = utils.getThreadId();
-        String ranomNum = utils.get3RandomNum();
-        String uId = prefix + timestamp + threadId + ranomNum;
+        String randomNum = utils.get3RandomNum();
+        String uId = prefix + timestamp + threadId + randomNum;
         user.setuId(uId);
         userDao.insert(user);
-
     }
 
 }

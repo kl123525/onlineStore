@@ -17,16 +17,16 @@ import java.util.Arrays;
  * Created by 杨旭晖 on 2018/1/14.
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter{
-    @Autowired
-    CartService cartService;
-    @Autowired
-    OrderService orderService;
-    @Autowired
-    ProductService productService;
-    @Autowired
-    SellerService sellerService;
-    @Autowired
-    StoreService storeService;
+    //@Autowired
+    //CartService cartService;
+    //@Autowired
+    //OrderService orderService;
+    //@Autowired
+    //ProductService productService;
+    //@Autowired
+    //SellerService sellerService;
+    //@Autowired
+    //StoreService storeService;
     @Autowired
     UserService userService;
 
@@ -37,19 +37,17 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
          * 不需要验证的url
          * */
         String[] noNeedAuthPage = new String[]{
-                "",
-                "checkLogin",
-                "register",
-                "loginAjax",
-                "login",
-                "product",
-                "category",
-                "search"};
+                "loginPage",
+                "homePage",
+                "registerPage",
+                "index",
+                "sendPhoneCode"
+        };
 
         String uri = request.getRequestURI();
         uri = StringUtils.remove(uri,contextPath);
         if (uri.startsWith("/user")){
-            String method = StringUtils.substringAfterLast(uri,"/user");
+            String method = StringUtils.substringAfterLast(uri,"user/");
             if(!Arrays.asList(noNeedAuthPage).contains(method)){
                 User user =(User) session.getAttribute("user");
                 if(null==user){
@@ -59,7 +57,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             }
         }
         if (uri.startsWith("/seller")){
-            String method = StringUtils.substringAfterLast(uri,"seller");
+            String method = StringUtils.substringAfterLast(uri,"seller/");
             if(!Arrays.asList(noNeedAuthPage).contains(method)){
                 Seller seller = (Seller)session.getAttribute("seller");
                 if (null == seller){
