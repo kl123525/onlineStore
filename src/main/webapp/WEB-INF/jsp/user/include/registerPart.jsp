@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="register-wrapper">
     <div class="steps steps-4">
         <ol>
@@ -16,14 +17,14 @@
         </ol>
     </div>
     <div class="reg-content">
-        <form action="#" method="post" id="mobile-register-form" class="validate">
+        <form action="#" method="post" class="mobile-register-form validate">
             <div class="reg-form">
                 <div class="form-group">
                     <div class="form-item">
                         <span class="form-label tsl" data-phase-id="r_p_mobileNum" style="cursor:default">手机号</span>
                         <div class="mobile-text">
                             <input type="text" class="mobile-input form-control" name="mobile" id="mobile-num-txt" maxlength="11" placeholder="请输入您的手机号码">
-                            <span id="pnum-info" style="color: red;position: absolute"></span>
+                            <span id="pnum-info" style="color: #c47e7d;position: absolute"></span>
                         </div>
                     </div>
                     <div class="form-item">
@@ -39,6 +40,54 @@
                     </div>
                     <div class="form-item form-item-short">
                         <a class="btn btn-danger" id="first-step-button">下一步</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <form id="user-info-form"  method="post" class="user-info-form validate">
+            <div class="form-list form-main-list">
+                <div class="form-group">
+                    <div class="form-item" style="margin-top:10px;">
+                        <span class="form-label tsl">账户</span>
+                        <div class="mobile-text">
+                            <input id="mobile-text account" class="form-control mobile-input" type="text" name="mobilenum" placeholder="13477098324" value="13477098324" disabled isrequired="true">
+                        </div>
+                    </div>
+                    <div class="form-item" style="margin-top:10px;">
+                        <span class="form-label tsl">性别</span>
+                        <div class="mobile-text">
+                            <select id="sex" class="form-control mobile-input" name="sex" style="margin-top: 0" onblur=checkSex()>
+                                <option disabled selected>--- 请选择性别 ---</option>
+                                <option>男</option>
+                                <option>女</option>
+                            </select>
+                            <span class="error-msg sex-error-msg"></span>
+                        </div>
+                    </div>
+                    <div class="form-item" style="margin-top:10px;">
+                        <span class="form-label tsl" data-phase-id="r_p_mobileNum">会员名</span>
+                        <div class="mobile-text">
+                            <input id="username-text" class="form-control mobile-input" name="username" placeholder="一旦设置，不能再修改" type="text" isrequired="true" onblur=checkNickname()>
+                            <span class="error-msg username-error-msg">长度只能在3-10个字符之间</span>
+                        </div>
+                    </div>
+                    <div class="form-item" style="margin-top:10px;">
+                        <span class="form-label tsl">登录密码</span>
+                        <div class="mobile-text">
+                            <input id="password-ps" class="form-control mobile-input" name="password" placeholder="设置您的登录密码" type="password" isrequired="true" onblur=checkPassword()>
+                            <span class="error-msg psw-error-msg"></span>
+                        </div>
+                    </div>
+                    <div class="form-item" style="margin-top:10px;">
+                        <span class="form-label tsl">密码确认</span>
+                        <div class="mobile-text">
+                            <input id="repassword-ps" class="form-control mobile-input" name="repassword" placeholder="请再次输入您的密码" type="password" isrequired="true" onblur=checkRepassword()>
+                            <span class="error-msg repsw-error-msg"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-item form-item-short">
+                        <input style="width:226px;margin: 20px 0 0 230px;background-color: #d9534f;color: white" type="button" id="second-step-button" class="btn btn-large tsl" value="提交">
                     </div>
                 </div>
             </div>

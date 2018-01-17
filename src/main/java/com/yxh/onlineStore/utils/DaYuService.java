@@ -44,6 +44,7 @@ public class DaYuService {
     /**
      * 发送6位随机验证码
      * @param telphone 手机号码
+     * @return 返回短信发送状态，如果成功返回验证码
      */
     public Map<Boolean,String> sendPhoneCode(String telphone) {
         Map<Boolean,String> map = new HashMap<Boolean, String>();

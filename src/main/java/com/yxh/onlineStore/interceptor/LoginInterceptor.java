@@ -15,6 +15,7 @@ import java.util.Arrays;
 
 /**
  * Created by 杨旭晖 on 2018/1/14.
+ * 拦截器，验证需要登录才能访问的页面
  */
 public class LoginInterceptor extends HandlerInterceptorAdapter{
     //@Autowired
@@ -41,7 +42,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
                 "homePage",
                 "registerPage",
                 "index",
-                "sendPhoneCode"
+                "sendPhoneCode",
+                "testPhoneCode",
+                "login",
+                "register"
         };
 
         String uri = request.getRequestURI();

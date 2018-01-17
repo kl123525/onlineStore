@@ -3,6 +3,7 @@ package com.yxh.onlineStore.po;
 import java.util.Date;
 
 public class User {
+    final String prefix = "001";
 
     private String uId;
 

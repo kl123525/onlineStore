@@ -7,6 +7,8 @@ import com.yxh.onlineStore.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -27,5 +29,6 @@ public class UserServiceImpl implements UserService{
         user.setuId(uId);
         userDao.insert(user);
     }
+
 
 }

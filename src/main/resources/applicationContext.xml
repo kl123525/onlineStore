@@ -38,7 +38,7 @@
     </bean>
     <!-- Spring-redis连接池管理工厂 -->
     <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-          p:host-name="${redis.host}" p:port="${redis.port}" p:pool-config-ref="poolConfig"/>
+          p:host-name="${redis.host}" p:port="${redis.port}" p:password="123456" p:pool-config-ref="poolConfig"/>
     <!-- 使用中间类解决RedisCache.jedisConnectionFactory的静态注入，从而使MyBatis实现第三方缓存 -->
     <bean id="redisCacheTransfer" class="com.yxh.onlineStore.utils.RedisCacheTransfer">
         <property name="jedisConnectionFactory" ref="jedisConnectionFactory"/>
@@ -50,9 +50,6 @@
         <property name="keySerializer" ref="stringRedisSerializer" />
         <property name="valueSerializer" ref="jdkSerializationRedisSerializer" />
     </bean>
-    <bean id="redisUtil" class="com.yxh.onlineStore.utils.RedisUtil" scope="prototype">
-        <property name="redisTemplate" 	ref="redisTemplate"/>
-    </bean>
 
     <!--    <bean id="mongo" class="mongodb.jdbc.MongoDataSource">
             <property name="url" value="${mongo.url}"/>
@@ -60,7 +57,8 @@
             <property name="password" value="${mongo.password}"/>
             <property name="loginTimeout" value="${mongo.loginTimeout}"/>
         </bean> -->
-    <import resource="mongodb-context.xml" />
+    <!-- <import resource="mongodb-context.xml" /> -->
+
 
     <tx:annotation-driven transaction-manager="txManager" />
     

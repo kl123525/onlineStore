@@ -38,31 +38,50 @@ public class UserController {
     }
 
     @RequestMapping("sendPhoneCode")
-    @ResponseBody
     public void sendPhoneCode(@RequestBody Map<String,String> phoneNum){
         Map<Boolean,String> map;
         //发送验证码
         String phone = phoneNum.get("phoneNum");
         map = daYuService.sendPhoneCode(phone);
         if(map.containsKey(true)) {
-            System.out.println(redisUtil.set(phone,map.get(true),180));
+            //如果数据库还存在此手机号的验证码则删除
+            if (redisUtil.hasKey(phone)) {
+                redisUtil.del(phone);
+            }
+            redisUtil.set(phone,map.get(true),180);
         }
     }
+
+    @RequestMapping("testPhoneCode")
+    @ResponseBody
+    public Boolean testPhoneCode(@RequestBody Map<String,String> request){
+        Map<String,String> response = new HashMap<String, String>();
+        String phoneCode = request.get("code");
+        String phoneNum = request.get("phoneNum");
+        String redisCode = (String) redisUtil.get(phoneNum);
+        if (phoneCode.equals(redisCode)){
+            redisUtil.del(phoneNum);
+            response.put("status","true");
+            return true;
+        }else {
+            response.put("status","false");
+            return false;
+        }
+    }
+
+    @RequestMapping("register")
+    @ResponseBody
+    public Boolean register(@RequestBody User user){
+
+        return false;
+    }
+
 
     @RequestMapping("registerPage")
     public String registerPage() { return "user/register"; }
     @RequestMapping("loginPage")
     public String loginPage() { return "user/login"; }
 
-    @RequestMapping("register")
-    public String register(User user){
-        userService.insertUser(user);
-        return "user/login";
-    }
 
-    @RequestMapping("login")
-    public String login(){
-        return "";
-    }
 
 }

@@ -1,5 +1,7 @@
 package com.yxh.onlineStore.utils;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.CollectionUtils;
 
@@ -13,8 +15,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class RedisUtil {
 
-
-    private RedisTemplate<String, Object> redisTemplate;
+    private ApplicationContext appCtx = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+    private RedisTemplate redisTemplate = (RedisTemplate) appCtx.getBean("redisTemplate");
 
     public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;

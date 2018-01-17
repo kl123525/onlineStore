@@ -145,3 +145,16 @@
     margin-top: -23px;
     margin-left: -220px;
 }
+.user-info-form {
+    width: 1200px;
+    margin:0 auto 0 auto;
+}
+.user-info-form .form-label {
+    margin : 0 10px 0 0;
+}
+.user-info-form .error-msg {
+    color: #c47e7d;
+    font-size: 14px;
+    margin-left: 270px;
+    margin-top: 10px
+}
