@@ -19,7 +19,7 @@ public class User {
 
     private String trueName;
 
-    private Byte level;
+    private Integer level;
 
     private Integer point;
 
@@ -27,7 +27,7 @@ public class User {
 
     private Integer exp;
 
-    private Byte addrNum;
+    private Integer addrNum;
 
     private String img;
 
@@ -90,11 +90,11 @@ public class User {
         this.trueName = trueName == null ? null : trueName.trim();
     }
 
-    public Byte getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(Byte level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
@@ -122,11 +122,11 @@ public class User {
         this.exp = exp;
     }
 
-    public Byte getAddrNum() {
+    public Integer getAddrNum() {
         return addrNum;
     }
 
-    public void setAddrNum(Byte addrNum) {
+    public void setAddrNum(Integer addrNum) {
         this.addrNum = addrNum;
     }
 

@@ -7,6 +7,8 @@ import com.yxh.onlineStore.utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,12 @@ public class UserServiceImpl implements UserService{
         String threadId = utils.getThreadId();
         String randomNum = utils.get3RandomNum();
         String uId = prefix + timestamp + threadId + randomNum;
+        Timestamp regDate = utils.getMysqlDate();
         user.setuId(uId);
+        user.setRegDate(regDate);
+        user.setLevel(0);
+        user.setExp(0);
+        user.setAddrNum(0);
         userDao.insert(user);
     }
 

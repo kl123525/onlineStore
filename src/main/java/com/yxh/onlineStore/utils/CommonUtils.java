@@ -1,6 +1,7 @@
 package com.yxh.onlineStore.utils;
 
 import java.lang.reflect.Method;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -71,5 +72,14 @@ public class CommonUtils {
     public String get3RandomNum(){
         int randomNum = (int)(0 + Math.random()*999);
         return String.format("$03d",randomNum);
+    }
+    /**
+     * 获取当前时间timestamp
+     * */
+    public Timestamp getMysqlDate(){
+        Date date = new Date();
+        long time = date.getTime();
+        Timestamp timestamp = new Timestamp(time);
+        return timestamp;
     }
 }
