@@ -11,14 +11,19 @@
 <html>
 <head>
     <title>用户登录</title>
+    <link href="../../../static/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../../../static/css/bootstrap-theme.css" rel="stylesheet" type="text/css">
     <link href="../../../static/css/common.css" rel="stylesheet" type="text/css">
     <link href="../../../static/css/user/logo.css" rel="stylesheet" type="text/css">
     <link href="../../../static/css/user/header.css" rel="stylesheet" type="text/css">
+    <link href="../../../static/css/user/login.css" rel="stylesheet" type="text/css">
     <script src="../../../static/js/jquery-3.2.1.js"></script>
+    <script src="../../../static/js/user/login.js"></script>
     <script src="../../../static/js/common.js"></script>
 </head>
 <body>
 <%@include file="./include/header.jsp"%>
-<%@include file="include/logo.jsp"%>
+<%@include file="./include/logo.jsp"%>
+<%@include file="./include/loginPart.jsp"%>
 </body>
 </html>

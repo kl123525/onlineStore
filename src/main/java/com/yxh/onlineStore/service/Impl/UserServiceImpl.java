@@ -6,9 +6,16 @@ import com.yxh.onlineStore.service.UserService;
 import com.yxh.onlineStore.utils.CommonUtils;
 import com.yxh.onlineStore.utils.DaYuService;
 import com.yxh.onlineStore.utils.RedisUtil;
+import com.yxh.onlineStore.utils.ValidateCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.Timestamp;
 import java.util.Map;
 
@@ -56,6 +63,32 @@ public class UserServiceImpl implements UserService{
             return true;
         }else
             return false;
+    }
+
+    public String[] createValidateImg(HttpServletRequest request) throws IOException{
+        String requestId = request.getRequestedSessionId();
+        String randomNum = utils.get3RandomNum();
+        ValidateCode validateCode = new ValidateCode();
+        String pathRoot = request.getSession().getServletContext().getRealPath("/");
+        String pathSuffix = "static/img/validate/"+requestId+randomNum+".png";
+        String path = pathRoot + pathSuffix;
+        String url = "../../../../static/img/validate/"+requestId+randomNum+".png";
+        Object[] obj = validateCode.createImage();
+        String code = (String) obj[0];
+        BufferedImage image = (BufferedImage) obj[1];
+        OutputStream os = new FileOutputStream(path);
+        ImageIO.write(image, "png", os);
+        os.close();
+        return new String[]{code,url,path};
+    }
+
+    public User login(String account, String password) {
+        User user = userDao.selectByAccount(account);
+        System.out.println(user.getAccount());
+        if (user.getPassword().equals(password)){
+            return user;
+        }else
+            return null;
     }
 
 

@@ -18,4 +18,6 @@ public interface UserDao {
     int updateByPrimaryKey(User record);
 
     String hasMobileNum(String account);
+
+    User selectByAccount(String account);
 }

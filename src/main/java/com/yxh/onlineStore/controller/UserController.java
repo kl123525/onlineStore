@@ -5,11 +5,13 @@ import com.yxh.onlineStore.service.UserService;
 import com.yxh.onlineStore.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,6 +61,18 @@ public class UserController {
         }
     }
 
+    @RequestMapping("login")
+    @ResponseBody
+    public boolean login(@RequestBody User user, HttpServletRequest request){
+        User user1 = userService.login(user.getAccount(),user.getPassword());
+        if (user1 != null){
+            HttpSession session = request.getSession();
+            session.setAttribute("user",user1);
+            return true;
+        }
+        return false;
+    }
+
     @RequestMapping("register")
     @ResponseBody
     public Boolean register(@RequestBody User user){
@@ -66,11 +80,34 @@ public class UserController {
         return result == 1;
     }
 
+    @RequestMapping("changeValidateImg")
+    @ResponseBody
+    public Map<String,String> changeValidateImg(HttpServletRequest request) throws IOException{
+        Map<String,String> response = new HashMap<String, String>();
+        String[] str = userService.createValidateImg(request);
+        HttpSession session = request.getSession();
+        String oldPath = (String)session.getAttribute("path");
+        File file = new File(oldPath);
+        file.delete();
+        session.setAttribute("path",str[2]);
+        response.put("Code",str[0]);
+        response.put("Url",str[1]);
+        return response;
+    }
+
 
     @RequestMapping("registerPage")
     public String registerPage() { return "user/register"; }
     @RequestMapping("loginPage")
-    public String loginPage() { return "user/login"; }
+    public ModelAndView loginPage(HttpServletRequest request)throws IOException {
+        String[] str = userService.createValidateImg(request);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("code",str[0]);
+        mv.addObject("url",str[1]);
+        mv.setViewName("user/login");
+        request.getSession().setAttribute("path",str[2]);
+        return mv;
+    }
 
 
 

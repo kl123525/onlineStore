@@ -93,8 +93,18 @@
             </div>
         </form>
         <div id="reg-isSuccess">
-            <div id="isSuccess"><h1>注册成功！</h1></div>
-            <div id="notSuccess"><h1>注册失败!</h1></div>
+            <div id="isSuccess">
+                <h1 style="text-align: center">注册成功！</h1>
+                <div style="text-align: center">
+                    <a href="../../../index.jsp" style="font-size: 16px "></a>
+                </div>
+            </div>
+            <div id="notSuccess" style="text-align: center">
+                <h1>注册失败!</h1>
+                <div style="text-align: center">
+                    <a href="../../../index.jsp" style="font-size: 16px "></a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

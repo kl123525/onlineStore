@@ -1,10 +1,10 @@
+$(".mobile-register-form").show();
+$(".user-info-form").hide();
+$("#reg-isSuccess").hide();
+$("#isSuccess").hide();
+$("#notSuccess").hide();
 $(document).ready(function () {
     var isSuccess = false;
-    $(".mobile-register-form").show();
-    $(".user-info-form").hide();
-    $("#reg-isSuccess").hide();
-    $("#isSuccess").hide();
-    $("#notSuccess").hide();
     var InterValObj; //timer变量，控制时间
     var count = 60; //间隔函数，1秒执行
     var curCount;//当前剩余秒数
@@ -107,13 +107,31 @@ $(document).ready(function () {
                     if (data){
                         $("#isSuccess").show();
                         $(".steps ol li").eq(3).addClass("active");
+                        curCount = 6;
+                        $("#isSuccess p").text("即将跳转至首页,还剩" + curCount + "秒");
+                        InterValObj = window.setInterval(jumpingIndex, 1000);
                     }else{
                         $("#notSuccess").show();
+                        curCount = 6;
+                        $("#isSuccess p").text("即将跳转至首页,还剩" + curCount + "秒");
+                        InterValObj = window.setInterval(jumpingIndex, 1000);
                     }
                 }
             })
         }
     });
+
+    /*------------------------------------------ 跳转页面计时器 -------------------------------------------------------*/
+    function jumpingIndex() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            window.location.href="../../../index.jsp";
+        }
+        else {
+            curCount--;
+            $("#isSuccess a").text("即将跳转至首页,还剩" + curCount + "秒");
+        }
+    }
 
 });
 

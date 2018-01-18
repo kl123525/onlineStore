@@ -1,0 +1,109 @@
+.login-wrapper {
+    width: 850px;
+    margin: 50px auto;
+    height: 480px;
+}
+.login-img {
+    background: url(../../img/site/login.jpg) no-repeat left -10px;
+    float: left;
+    height: 350px;
+    position: relative;
+    width: 450px;
+    z-index: 1;
+}
+.login-tools {
+    float: right;
+    width: 270px;
+    top: -30px;
+    margin-right: -100px;
+    position: relative;
+}
+.login-type {
+    color: #666;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-bottom: 10px;
+}
+.normal-item {
+    clear: both;
+    float: left;
+    width: 100%;
+    position: relative;
+    padding: 0.2rem 0;
+    margin: 10px 0;
+}
+.same_input {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    height: 37px;
+    line-height: 35px;
+    padding-left: 33px;
+    width: 265px;
+    float: left;
+}
+#validcode {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    float: left;
+    font-family: Tahoma;
+    height: 34px;
+    line-height: 35px;
+    width: 82px;
+    padding-left: 10px;
+}
+.code_img {
+    float: left;
+    display: inline;
+    width: 70px;
+    margin: 0 10px;
+    height: 35px;
+}
+.normal-item input::-webkit-input-placeholder{
+    font-family: "宋体";
+    font-size: 16px;
+    color: #797e87;
+}
+.normal-item input {
+    font-family: "宋体";
+    font-size: 16px;
+    color: #797e87;
+}
+#login {
+    border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    height: 34px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 270px;
+    background-color: #d9534f;
+}
+#changeImg {
+    color: #5b515c;
+    font-size: 12px;
+    font-family: 宋体;
+    text-decoration: none;
+    display: inline;
+}
+#changeImg:hover {
+    color: red;
+    text-decoration: underline;
+}
+.login-tips {
+    width: 290px;
+    padding: 10px 10px 10px 10px;
+    background-color: #fff0f0;
+    border: solid #ffd2d2 1px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: auto;
+}
+.tips-content {
+    display: block;
+    width: 240px;
+    margin:auto;
+}
