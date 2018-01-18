@@ -32,7 +32,7 @@
                         <div class="mobile-text" style="">
                             <input type="text" class="mobile-input form-control" name="validate_sms_code" id="validate-sms-code-txt" maxlength="6" datatype="int" style=" float: left;"><span class="tip ok" style="color:#a94442;font-size: 12px; top: 5px; position: absolute; left: 0px;"></span>
                             <input type="button" class="btn btn-info send-sms-btn" id="send-sms-button" value="发送验证码">
-                            <span id="sms-info" style="color: red"></span>
+                            <span id="sms-info" style="color: #c47e7d"></span>
                         </div>
                     </div>
                     <div class="form-item form-item-short" style="cursor:default">
@@ -50,7 +50,7 @@
                     <div class="form-item" style="margin-top:10px;">
                         <span class="form-label tsl">账户</span>
                         <div class="mobile-text">
-                            <input id="mobile-text account" class="form-control mobile-input" type="text" name="mobilenum" placeholder="13477098324" value="13477098324" disabled isrequired="true">
+                            <input id="mobile-text account" class="form-control mobile-input" type="text" name="mobilenum" placeholder="" value="" disabled isrequired="true">
                         </div>
                     </div>
                     <div class="form-item" style="margin-top:10px;">
@@ -92,5 +92,9 @@
                 </div>
             </div>
         </form>
+        <div id="reg-isSuccess">
+            <div id="isSuccess"><h1>注册成功！</h1></div>
+            <div id="notSuccess"><h1>注册失败!</h1></div>
+        </div>
     </div>
 </div>

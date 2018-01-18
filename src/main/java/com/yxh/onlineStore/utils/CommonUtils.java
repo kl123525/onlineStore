@@ -62,7 +62,7 @@ public class CommonUtils {
      *获取当前时间戳，14位
      * */
     public String getTimestamp(){
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
         return df.format(new Date());
     }
 
@@ -71,7 +71,7 @@ public class CommonUtils {
      * */
     public String get3RandomNum(){
         int randomNum = (int)(0 + Math.random()*999);
-        return String.format("$03d",randomNum);
+        return String.format("%03d",randomNum);
     }
     /**
      * 获取当前时间timestamp

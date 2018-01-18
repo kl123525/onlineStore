@@ -1,9 +1,7 @@
 package com.yxh.onlineStore.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import com.yxh.onlineStore.po.User;
 import com.yxh.onlineStore.service.UserService;
-import com.yxh.onlineStore.utils.DaYuService;
 import com.yxh.onlineStore.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +19,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("user")
 public class UserController {
-    private DaYuService daYuService = new DaYuService();
+
     private RedisUtil redisUtil = new RedisUtil();
     @Autowired
     private UserService userService;
@@ -38,42 +36,34 @@ public class UserController {
     }
 
     @RequestMapping("sendPhoneCode")
-    public void sendPhoneCode(@RequestBody Map<String,String> phoneNum){
-        Map<Boolean,String> map;
-        //发送验证码
+    @ResponseBody
+    public boolean sendPhoneCode(@RequestBody Map<String,String> phoneNum){
         String phone = phoneNum.get("phoneNum");
-        map = daYuService.sendPhoneCode(phone);
-        if(map.containsKey(true)) {
-            //如果数据库还存在此手机号的验证码则删除
-            if (redisUtil.hasKey(phone)) {
-                redisUtil.del(phone);
-            }
-            redisUtil.set(phone,map.get(true),180);
-        }
+        return userService.sendPhoneCode(phone);
     }
 
     @RequestMapping("testPhoneCode")
     @ResponseBody
-    public Boolean testPhoneCode(@RequestBody Map<String,String> request){
+    public Map<String,String> testPhoneCode(@RequestBody Map<String,String> request){
         Map<String,String> response = new HashMap<String, String>();
         String phoneCode = request.get("code");
         String phoneNum = request.get("phoneNum");
         String redisCode = (String) redisUtil.get(phoneNum);
         if (phoneCode.equals(redisCode)){
             redisUtil.del(phoneNum);
-            response.put("status","true");
-            return true;
+            response.put("true",phoneNum);
+            return response;
         }else {
-            response.put("status","false");
-            return false;
+            response.put("false","");
+            return response;
         }
     }
 
     @RequestMapping("register")
     @ResponseBody
     public Boolean register(@RequestBody User user){
-
-        return false;
+        int result = userService.insertUser(user);
+        return result == 1;
     }
 
 

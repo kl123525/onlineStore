@@ -19,7 +19,7 @@ public class User {
 
     private String trueName;
 
-    private Integer level;
+    private Integer lv;
 
     private Integer point;
 
@@ -32,7 +32,8 @@ public class User {
     private String img;
 
     public String getPrefix() {
-        return "001"; }
+        return prefix;
+    }
 
     public String getuId() {
         return uId;
@@ -90,12 +91,12 @@ public class User {
         this.trueName = trueName == null ? null : trueName.trim();
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getLv() {
+        return lv;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setLv(Integer lv) {
+        this.lv = lv;
     }
 
     public Integer getPoint() {

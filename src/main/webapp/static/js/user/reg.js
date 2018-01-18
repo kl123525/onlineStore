@@ -1,7 +1,10 @@
 $(document).ready(function () {
-    var step = 1;
-    $(".mobile-register-form").hide();
-    $(".user-info-form").show();
+    var isSuccess = false;
+    $(".mobile-register-form").show();
+    $(".user-info-form").hide();
+    $("#reg-isSuccess").hide();
+    $("#isSuccess").hide();
+    $("#notSuccess").hide();
     var InterValObj; //timer变量，控制时间
     var count = 60; //间隔函数，1秒执行
     var curCount;//当前剩余秒数
@@ -10,25 +13,35 @@ $(document).ready(function () {
         var phoNum = $("#mobile-num-txt").val();
         var flag = test.test(phoNum);
         if (!flag){
-            $("#sms-info").text("请输入正确的手机号码!");
+            $("#pnum-info").text("请输入正确的手机号码!");
+            $("#mobile-num-txt").css(errorBorder);
         } else {
             $("#sms-info").text("");
+            $("#mobile-num-txt").css(normalBorder);
             sendMessage(phoNum);
         }
     });
     function sendMessage(phoNum) {
-        curCount = count;
-        //设置button效果，开始计时
-        $("#send-sms-button").attr("disabled", "true");
-        $("#send-sms-button").val("已发送 " + curCount + " 秒");
-        InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
         var json = {"phoneNum":phoNum};
         $.ajax({
             method : "POST",
             contentType: "application/json",
             url : "/user/sendPhoneCode",
             data : JSON.stringify(json),
-            dataType : "json"
+            dataType : "json",
+            success:function (data) {
+                if (data){
+                    $("#mobile-num-txt").css(normalBorder);
+                    $("#pnum-info").text("");
+                    curCount = count;
+                    //设置button效果，开始计时
+                    $("#send-sms-button").attr("disabled", "true").val("已发送 " + curCount + " 秒");
+                    InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                }else{
+                    $("#mobile-num-txt").css(errorBorder);
+                    $("#pnum-info").text("此手机号已被注册!");
+                }
+            }
         });
     }
 
@@ -36,8 +49,7 @@ $(document).ready(function () {
     function SetRemainTime() {
         if (curCount == 0) {
             window.clearInterval(InterValObj);//停止计时器
-            $("#send-sms-button").removeAttr("disabled");//启用按钮
-            $("#send-sms-button").val("重新发送");
+            $("#send-sms-button").removeAttr("disabled").val("重新发送");
         }
         else {
             curCount--;
@@ -56,10 +68,16 @@ $(document).ready(function () {
             data : JSON.stringify(json),
             dataType : "json",
             success:function (data) {
-                if (data){
+                if (data.true != null){
+                    $("#sms-info").text("");
+                    $("#validate-sms-code-txt").css(normalBorder);
+                    $(" input[ name='mobilenum'] ").val(data.true);
                     $(".mobile-register-form").hide();
                     $(".user-info-form").show();
                     $(".steps ol li").eq(1).addClass("active");
+                }else{
+                    $("#sms-info").text("验证码错误");
+                    $("#validate-sms-code-txt").css(errorBorder);
                 }
             }
         })
@@ -71,7 +89,6 @@ $(document).ready(function () {
         checkUserInfo();
         if (flag1 && flag2 && flag3 && flag4){
             var account = $(" input[ name='mobilenum'] ").val();
-            alert(account);
             var sex = $("#sex").val();
             var nickName = $("#username-text").val();
             var password = $("#password-ps").val();
@@ -82,12 +99,25 @@ $(document).ready(function () {
                 contentType: "application/json",
                 url : "/user/register",
                 data : JSON.stringify(json),
-                dataType : "json"
+                dataType : "json",
+                success:function (data) {
+                    $(".user-info-form").hide();
+                    $("#reg-isSuccess").show();
+                    $(".steps ol li").eq(2).addClass("active");
+                    if (data){
+                        $("#isSuccess").show();
+                        $(".steps ol li").eq(3).addClass("active");
+                    }else{
+                        $("#notSuccess").show();
+                    }
+                }
             })
         }
     });
 
 });
+
+/*------------------------------------------- 注册信息验证 --------------------------------------------------------*/
 var flag1 = false;
 var flag2 = false;
 var flag3 = false;

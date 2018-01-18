@@ -145,6 +145,13 @@
     margin-top: -23px;
     margin-left: -220px;
 }
+#sms-info {
+    margin-top: 45px;
+}
+#pnum-info {
+    margin-left: -40px;
+    margin-top: 6px;
+}
 .user-info-form {
     width: 1200px;
     margin:0 auto 0 auto;
