@@ -14,7 +14,9 @@
     <context:component-scan base-package="com.yxh.onlineStore.service">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
     </context:component-scan>
-
+    <context:component-scan base-package="com.yxh.onlineStore.utils">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+    </context:component-scan>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>

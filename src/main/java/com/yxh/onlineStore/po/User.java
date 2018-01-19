@@ -1,8 +1,10 @@
 package com.yxh.onlineStore.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class User {
+public class User implements Serializable{
+    private static final long serialVersionUID = -5976199843545605259L;
     final String prefix = "001";
 
     private String uId;

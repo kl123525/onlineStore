@@ -3,6 +3,7 @@ package com.yxh.onlineStore.utils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by 杨旭晖 on 2018/1/14.
  */
+@Component
 public class RedisUtil {
 
     private ApplicationContext appCtx = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");

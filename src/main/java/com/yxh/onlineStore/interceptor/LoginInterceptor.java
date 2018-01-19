@@ -46,7 +46,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
                 "testPhoneCode",
                 "login",
                 "register",
-                "changeValidateImg"
+                "changeValidateImg",
+                "test"
         };
 
         String uri = request.getRequestURI();

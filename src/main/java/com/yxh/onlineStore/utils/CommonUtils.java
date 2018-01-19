@@ -1,5 +1,7 @@
 package com.yxh.onlineStore.utils;
 
+import org.springframework.stereotype.Component;
+
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -8,6 +10,7 @@ import java.util.Date;
 /**
  * Created by 杨旭晖 on 2017/12/11.
  */
+@Component
 public class CommonUtils {
 
     /**
@@ -82,4 +85,7 @@ public class CommonUtils {
         Timestamp timestamp = new Timestamp(time);
         return timestamp;
     }
+    /**
+     * 生成用户登录token
+     * */
 }

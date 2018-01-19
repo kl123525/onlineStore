@@ -44,7 +44,7 @@
                 </div>
             </div>
         </form>
-        <form id="user-info-form"  method="post" class="user-info-form validate">
+        <form id="user-info-form"  method="post" class="user-info-form validate" style="display: none">
             <div class="form-list form-main-list">
                 <div class="form-group">
                     <div class="form-item" style="margin-top:10px;">
@@ -92,7 +92,7 @@
                 </div>
             </div>
         </form>
-        <div id="reg-isSuccess">
+        <div id="reg-isSuccess" style="display: none">
             <div id="isSuccess">
                 <h1 style="text-align: center">注册成功！</h1>
                 <div style="text-align: center">

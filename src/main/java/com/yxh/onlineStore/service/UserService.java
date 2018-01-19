@@ -2,6 +2,7 @@ package com.yxh.onlineStore.service;
 
         import com.yxh.onlineStore.po.User;
 
+        import javax.servlet.http.Cookie;
         import javax.servlet.http.HttpServletRequest;
         import java.io.IOException;
 
@@ -17,4 +18,12 @@ public interface UserService {
     String[] createValidateImg(HttpServletRequest request) throws IOException;
 
     User login(String account,String password);
+
+    Cookie setLoginCookie(String auto, User user);
+
+    User selectByUid(String uId);
+
+    User autoLogin(String token);
+
+    Cookie logout(User user);
 }

@@ -29,13 +29,19 @@
                 <a class="changeImg" id="changeImg">看不清楚?换一张</a>
             </label>
             <div class="normal-item">
-                <input type="checkbox" name="auto-login" id="auto-login" value="1">
-                <p style="cursor:default; display: inline-block">两周内免登录</p>
+                <input type="checkbox" name="auto-login" id="auto-login">
+                <p style="cursor:default; display: inline-block">一分钟内免登录</p>
                 <a href="#" style="display: inline-block;color: red;margin-left:80px">忘记密码?</a>
             </div>
             <div class="normal-item">
                 <input type="button" tabindex="4" name="login" id="login" value="登  录">
             </div>
+        </div>
+    </div>
+    <div class="login-success" style="display: none">
+        <h1 style="text-align: center">登录成功！</h1>
+        <div style="text-align: center">
+            <a href="/user/homePage" style="font-size: 16px ">即将跳转至首页</a>
         </div>
     </div>
 </div>

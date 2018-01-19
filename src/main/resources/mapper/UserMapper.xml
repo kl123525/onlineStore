@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yxh.onlineStore.dao.UserDao">
+  <cache type="com.yxh.onlineStore.utils.RedisCache"/>
   <resultMap id="BaseResultMap" type="com.yxh.onlineStore.po.User">
     <id column="u_id" jdbcType="VARCHAR" property="uId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
@@ -20,7 +21,7 @@
     u_id, account, password, reg_date, sex, nick_name, true_name, lv, point, addr_id, 
     exp, addr_num, img
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap" useCache="true">
     select 
     <include refid="Base_Column_List" />
     from user

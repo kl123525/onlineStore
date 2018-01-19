@@ -3,16 +3,16 @@ package com.yxh.onlineStore.service.Impl;
 import com.yxh.onlineStore.dao.UserDao;
 import com.yxh.onlineStore.po.User;
 import com.yxh.onlineStore.service.UserService;
-import com.yxh.onlineStore.utils.CommonUtils;
-import com.yxh.onlineStore.utils.DaYuService;
-import com.yxh.onlineStore.utils.RedisUtil;
-import com.yxh.onlineStore.utils.ValidateCode;
+import com.yxh.onlineStore.utils.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -25,11 +25,16 @@ import java.util.Map;
  */
 @Service
 public class UserServiceImpl implements UserService{
-    private DaYuService daYuService = new DaYuService();
-    private CommonUtils utils = new CommonUtils();
-    private RedisUtil redisUtil = new RedisUtil();
+    @Autowired
+    DaYuService daYuService;
+    @Autowired
+    CommonUtils utils;
+    @Autowired
+    RedisUtil redisUtil;
     @Autowired
     private UserDao userDao;
+    @Autowired
+    DesUtil desUtil;
 
     public int insertUser(User user) {
         String prefix = user.getPrefix();
@@ -44,6 +49,7 @@ public class UserServiceImpl implements UserService{
         user.setExp(0);
         user.setAddrNum(0);
         user.setPoint(0);
+        user.setPassword(desUtil.encrypt(user.getPassword()));
         return userDao.insert(user);
     }
 
@@ -79,16 +85,63 @@ public class UserServiceImpl implements UserService{
         OutputStream os = new FileOutputStream(path);
         ImageIO.write(image, "png", os);
         os.close();
-        return new String[]{code,url,path};
+        HttpSession session = request.getSession();
+        String oldPath = (String)session.getAttribute("path");
+        if (oldPath != null){
+            File file = new File(oldPath);
+            file.delete();
+        }
+        session.setAttribute("path",path);
+        return new String[]{code,url};
     }
 
     public User login(String account, String password) {
         User user = userDao.selectByAccount(account);
-        System.out.println(user.getAccount());
-        if (user.getPassword().equals(password)){
+        if (desUtil.decrypt(user.getPassword()).equals(password)){
             return user;
         }else
             return null;
+    }
+
+    /**
+     * 设置自动登录cookie，将token存入redis
+     * */
+    public Cookie setLoginCookie(String auto, User user) {
+        //设置自动登录有效时间
+        int deadline = 60;
+        String token = desUtil.encrypt(user.getuId());
+        Cookie cookie = new Cookie("token",token);
+        cookie.setPath("/");
+        if (auto.equals("true")){
+            cookie.setMaxAge(deadline);
+            redisUtil.set(token,user,deadline);
+        }else {
+            cookie.setMaxAge(0);
+            if (redisUtil.hasKey(token))
+                redisUtil.del(token);
+        }
+
+        return cookie;
+    }
+
+    public User selectByUid(String uId) {
+        return userDao.selectByPrimaryKey(uId);
+    }
+
+    public User autoLogin(String token) {
+        if(redisUtil.hasKey(token)){
+            return (User)redisUtil.get(token);
+        }
+        return null;
+    }
+
+    public Cookie logout(User user) {
+        String token = desUtil.encrypt(user.getuId());
+        Cookie cookie = new Cookie("token",token);
+        cookie.setMaxAge(0);
+        if (redisUtil.hasKey(token))
+            redisUtil.del(token);
+        return cookie;
     }
 
 
